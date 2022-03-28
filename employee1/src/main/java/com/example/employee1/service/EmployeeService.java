@@ -45,7 +45,7 @@ public class EmployeeService {
         employee2.setEmployeeEntity(employeeEntity);
         employeeAddressE.add(employeeAddressR.save(employee2));
         });
-
+        employeeEntity.setAddress(employeeAddressE);
         List<EmployeeAttendenceE> employeeAttendenceE=new ArrayList<>();
         employee.getAttendence().stream().forEach(ea->{
             EmployeeAttendenceE employeeAttendenceE1 =new EmployeeAttendenceE();
@@ -56,13 +56,14 @@ public class EmployeeService {
             employeeAttendenceE.add(employeeAttendenceR.save(employeeAttendenceE1));
 
                 });
+        employeeEntity.setAttendence(employeeAttendenceE);
 
         EmployeeSalaryE employeeSalaryE=new EmployeeSalaryE();
         employeeSalaryE.setSalary(employee.getSalary().getSalary());
         employeeSalaryE.setPayable(employee.getSalary().getPayable());
-        employeeEntity.setSalary(employeeSalaryE);
         employeeSalaryE.setEmployeeEntity(employeeEntity);
         employeeSalaryR.save(employeeSalaryE);
+        employeeEntity.setSalary(employeeSalaryE);
         
         employeeR.save(employeeEntity);
     }
